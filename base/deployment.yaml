@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"kustomize-test:latest","namespace":"test"},"fieldPath":"spec.template.spec.containers[?(@.name==\"kustomize-test\")].image"}]'
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: null
+  labels:
+    app: kustomize
+    app.kubernetes.io/component: kustomize
+    app.kubernetes.io/instance: kustomize
+    app.kubernetes.io/name: kustomize-test
+    test: kustomize
+  name: kustomize
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: kustomize
+      test: kustomize
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        deployment: kustomize
+        test: kustomize
+    spec:
+      containers:
+      - image: ' '
+        name: kustomize-test
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        resources: {}
+status: {}

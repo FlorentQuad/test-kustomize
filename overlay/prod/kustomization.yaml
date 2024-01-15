@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namePrefix: prod-
+
+commonLabels:
+    app: prod-kustomize
+    env: prod
+
+resources:
+  - ../../base
+
+commonAnnotations:
+  note: Hello From Prod!
+
+patches:
+ - target:
+      group: route.openshift.io
+      version: v1
+      kind: Route
+   path: route-patch.yaml

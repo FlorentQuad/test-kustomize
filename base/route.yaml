@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: kustomize
+    app.kubernetes.io/component: kustomize
+    app.kubernetes.io/instance: kustomize
+    app.kubernetes.io/name: kustomize-test
+    test: kustomize
+  name: kustomize
+  namespace: test
+spec:
+  host: kustomize-test.apps-crc.testing
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: kustomize
+    weight: 100
+  wildcardPolicy: None

@@ -1,0 +1,6 @@
+- op: replace
+  path: /spec/host
+  value: dev.apps-crc.testing
+- op: replace
+  path: /spec/to/name
+  value: dev-kustomize
